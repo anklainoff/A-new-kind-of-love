@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Для тебя</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Основной контейнер -->
+  <div id="app">
+    <!-- Страница приветствия (экран пароля) -->
+    <section id="welcome-screen" class="screen active">
+      <div class="animated-bg" id="bg-layer"></div>
+      <div class="welcome-content">
+        <div class="dynamic-text" id="dynamic-greeting">
+          <span class="greeting-line" id="greeting-text">Добро пожаловать</span>
+          <span class="name-line" id="name-text">Алёна</span>
+        </div>
+        <div class="password-field">
+          <input type="password" id="password-input" placeholder="Пароль" autocomplete="off">
+          <button id="submit-password" class="glass-btn">Войти</button>
+        </div>
+        <div class="error-message" id="error-message"></div>
+      </div>
+    </section>
+
+    <!-- Вторая страница -->
+    <section id="love-screen" class="screen">
+      <div class="love-bg" id="love-bg-layer"></div>
+      <div class="love-content" id="love-content">
+        <h1 class="love-title" id="love-title">Для тебя</h1>
+        <!-- Карточки и текстовые блоки будут вставлены через JS -->
+        <div class="cards-container" id="cards-container"></div>
+        <div class="letter-container" id="letter-container">
+          <div class="letter-card">
+            <p class="letter-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
