@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function move() {
       // Двигаем шары
       orbs.forEach((orb, idx) => {
-        const speed = 0.008 + idx * 0.002;
+        const speed = 0.002 + idx * 0.002;
         const x = Math.sin(Date.now() * speed + idx) * 30;
         const y = Math.cos(Date.now() * speed * 0.7 + idx) * 25;
         orb.style.transform = `translate(${x}px, ${y}px)`;
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Двигаем частицы
       particles.forEach((p, i) => {
-        const sp = 0.015 + i * 0.001;
+        const sp = 0.004 + i * 0.0003;
         const x = Math.sin(Date.now() * sp + i) * 45;
         const y = Math.cos(Date.now() * sp * 0.8) * 35;
         p.style.transform = `translate(${x}px, ${y}px)`;
