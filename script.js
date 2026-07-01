@@ -26,9 +26,14 @@ const CONFIG = {
   
   // Текстовые блоки между фото
   textBlocks: [
-   ""
+    "Самые тёплые воспоминания"
   ],
-
+  
+  // Заголовок второй страницы
+  loveTitle: "Для тебя",
+  
+  // Письмо внизу
+  letter: "Дорогая Алёна,\n\nЭтот маленький сайт — просто напоминание о том, как много ты значишь. Здесь собраны тёплые моменты и светлые воспоминания.\n\nСпасибо, что ты есть.",
   
   // Скорость смены приветствия (мс)
   greetingInterval: 4200,
@@ -90,26 +95,64 @@ document.addEventListener('DOMContentLoaded', () => {
   createOrbs(bgLayer, 6);
   createOrbs(loveBgLayer, 5);
 
-  // =============== АНИМАЦИЯ ФОНА ===============
+  // =============== АНИМАЦИЯ ФОНА (плавная, медленная) ===============
   function animateBackground() {
     const orbs = document.querySelectorAll('.orb');
     const particles = document.querySelectorAll('.particle');
     
+    // Начальные позиции для каждого элемента
+    const orbPositions = [];
+    const particlePositions = [];
+    
+    orbs.forEach(() => {
+      orbPositions.push({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        speedX: 0.005 + Math.random() * 0.01,
+        speedY: 0.004 + Math.random() * 0.008
+      });
+    });
+    
+    particles.forEach(() => {
+      particlePositions.push({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        speedX: 0.01 + Math.random() * 0.02,
+        speedY: 0.008 + Math.random() * 0.015
+      });
+    });
+    
     function move() {
-      // Двигаем шары
+      // Двигаем шары плавно
       orbs.forEach((orb, idx) => {
-        const speed = 0.0002 + idx * 0.002;
-        const x = Math.sin(Date.now() * speed + idx) * 30;
-        const y = Math.cos(Date.now() * speed * 0.7 + idx) * 25;
-        orb.style.transform = `translate(${x}px, ${y}px)`;
+        const pos = orbPositions[idx];
+        pos.x += pos.speedX;
+        pos.y += pos.speedY;
+        
+        if (pos.x > 130) pos.x = -30;
+        if (pos.x < -30) pos.x = 130;
+        if (pos.y > 130) pos.y = -30;
+        if (pos.y < -30) pos.y = 130;
+        
+        const screenX = (pos.x - 50) * 0.6;
+        const screenY = (pos.y - 50) * 0.5;
+        orb.style.transform = `translate(${screenX}px, ${screenY}px)`;
       });
       
-      // Двигаем частицы
+      // Двигаем частицы плавно
       particles.forEach((p, i) => {
-        const sp = 0.0004 + i * 0.0003;
-        const x = Math.sin(Date.now() * sp + i) * 45;
-        const y = Math.cos(Date.now() * sp * 0.8) * 35;
-        p.style.transform = `translate(${x}px, ${y}px)`;
+        const pos = particlePositions[i];
+        pos.x += pos.speedX;
+        pos.y += pos.speedY;
+        
+        if (pos.x > 130) pos.x = -30;
+        if (pos.x < -30) pos.x = 130;
+        if (pos.y > 130) pos.y = -30;
+        if (pos.y < -30) pos.y = 130;
+        
+        const screenX = (pos.x - 50) * 0.8;
+        const screenY = (pos.y - 50) * 0.6;
+        p.style.transform = `translate(${screenX}px, ${screenY}px)`;
       });
       
       requestAnimationFrame(move);
